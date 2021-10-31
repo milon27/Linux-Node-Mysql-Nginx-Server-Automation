@@ -1,10 +1,17 @@
+#!/usr/bin/bash
 #########################
 # Variable
 ##########################
 
-USERNAME="milon27"
-PASSWORD="yourPassWd123!@#"
+USERNAME="new_user_name"
+PASSWORD="new_user_password"
 HOEM_DIR="/home/$USERNAME"
+
+#mysql db variable
+USER="db_user"
+PASS="db_user_password"
+DB="db_name"
+
 
 ########################
 # Start Setup
@@ -34,7 +41,8 @@ sudo chown "$USERNAME":"$USERNAME" .ssh
 #  remove password login (will do later)
 sudo nano /etc/ssh/sshd_config
 # *. permitRootLogin yes -> no
-# *. passwordAuthentication yes->no 
+# *. passwordAuthentication yes->no
+
 
 ########################
 # Start Installation
@@ -52,9 +60,24 @@ sudo mysql_secure_installation
 #5.1 edit mysql conf file
 echo "edit mysql conf file to change (change port to ramdom e.g. 5063+ )"
 sudo nano /etc/mysql/mysql.conf.d/mysqld.cnf
+#5.1.1 //change default port to something random (more than 1080)=5033
+
+#5.1.2 //change from where to access the database [127.0.0.1=localhost]
+# 	bind-address=0.0.0.0 (from anywhere)
+# 	mysqlx-bind-address=0.0.0.0 (from anywhere)
+
 sudo systemctl restart mysql
 
-# create a mysql user later .
+#5.2 create a mysql user & database .
+
+sudo mysql -u root <<MYSQL_SCRIPT
+CREATE USER '$USER'@'%' identified WITH mysql_native_password by '$PASS';
+GRANT ALL PRIVILEGES ON *.* TO '$USER'@'%';
+flush privileges;
+create database $DB;
+MYSQL_SCRIPT
+echo "MySQL user&Db created."
+
 
 #6. install pm2
 sudo npm install pm2@latest -g
@@ -66,7 +89,6 @@ sudo apt install nginx
 sudo apt install certbot python3-certbot-nginx
 
 # other things to do.
-  # - create a mysql user later .
   # - setup domain .
   # - create sub domain if you want .
   # - setup ssl .
