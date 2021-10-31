@@ -31,7 +31,7 @@ echo "creating a sudo user"
 useradd -m -p $(openssl passwd -1 "$PASSWORD") -s /bin/bash -G sudo "$USERNAME"
 
 #2.1 append sudo group
-# usermod -aG sudo milon27
+# usermod -aG sudo "$USERNAME"
 
 #3 create .ssh and cp the pub.key
 cd $HOEM_DIR && mkdir "$HOEM_DIR/.ssh" && chmod 700 "$HOEM_DIR/.ssh"
