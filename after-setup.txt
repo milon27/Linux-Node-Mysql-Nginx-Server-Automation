@@ -1,0 +1,38 @@
+# After all setup & installation process..
+
+## CICD
+   0. create a file called mmenv.txt (with all env variable for production)
+   1. create a action runner in our server.	
+	*go to settings then create a runner->
+	*instal runner in the server->
+        * config the runner ./config.sh
+        * start it on backgroud sudo svc.sh start
+        * pm2 startup after all setup
+   2. setup nginx
+	* after ssl(setup react spa, )
+        * setup gzip here /etc/nginx/nginx.conf
+        gzip on;
+
+        gzip_vary on;
+        gzip_min_length 256;
+        gzip_proxied any;
+        gzip_comp_level 6;
+        gzip_buffers 16 8k;
+        gzip_http_version 1.1;
+        gzip_types text/plain text/css application/json application/javascript text/xml application/xml application/xml+rss text/javascript;
+
+
+    3. clone repo from github.
+
+    * set timezone Asia/Dhaka if you have not set yet
+    * create a backup directory in home dir.
+
+    4. automate ssl renew and mysql backup and delete mysql old file uisng crontab.
+
+@weekly certbot renew > /home/milon27/backup/ssl_log.txt
+@daily mysqldump -u root messmanager | gzip > /home/milon27/backup/`date +\%F-\%X`-mm.sql.gz
+@monthly find /home/milon27/backup/ -name "*.sql.gz" -type f -mtime +32 -delete
+
+
+
+        

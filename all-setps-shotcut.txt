@@ -1,0 +1,9 @@
+1. run the setup.sh script
+2. pm2 start up 
+3. setup domain.
+4. setup nginx for the sub-domain,domain.and proxy server.
+5. setup ssl
+6. cicd,action runner,
+7. upload react file in /var/www/html
+8. enable gzip in /etc/nginx/nginx.conf
+9. run 3 crontab [weekly ck ssl renew, daily mysql backup, monthly remove old mysql]

@@ -1,0 +1,85 @@
+
+server {
+
+        root /var/www/html;
+
+        index index.html index.htm index.nginx-debian.html;
+
+        server_name messmanager.app www.messmanager.app;
+
+        location / {
+                try_files $uri $uri/ =404;
+                #try_files $uri /index.html;
+                #proxy_pass http://localhost:2727/;
+        }
+
+        location ~* (service-worker\.js)$ {
+            add_header 'Cache-Control' 'no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0';
+            expires off;
+            proxy_no_cache 1;
+        }
+}
+
+
+#####################################################
+################## API SETUP SERVER #################
+#####################################################
+
+
+# subdomain for api reverse proxy server
+
+server {
+        listen 443;
+        listen [::]:443;
+	# root /var/www/blog.example.com;
+	# index index.html;
+        server_name api.messmanager.app;
+        location / {
+           proxy_pass http://localhost:2727/;
+        }
+}
+
+
+
+server {
+
+        server_name app.testmess27.ml;
+
+#       root /var/www/app;
+#       index index.html;
+
+        location / {
+                proxy_pass http://localhost:2727;
+        }
+
+    listen [::]:443 ssl; # managed by Certbot
+    listen 443 ssl; # managed by Certbot
+    ssl_certificate /etc/letsencrypt/live/www.testmess27.ml/fullchain.pem; # managed by Certbot
+    ssl_certificate_key /etc/letsencrypt/live/www.testmess27.ml/privkey.pem; # managed by Certbot
+    include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
+    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
+
+
+}
+
+
+
+
+
+# redirect a request
+
+server {
+    if ($host = messmanager.app) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+
+    listen 80 default_server;
+    listen [::]:80 default_server;
+
+    server_name messmanager.app;
+    return 404; # managed by Certbot
+}
+
+
+
