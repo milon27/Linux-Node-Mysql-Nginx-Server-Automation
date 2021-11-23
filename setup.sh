@@ -104,6 +104,7 @@ chmod 777 /var/www/html
 sudo apt install certbot python3-certbot-nginx
 
 # other things to do.
+  # - login with new non root user then do these task.
   # - pm2 startup
   # - to remove pm2 startup :  pm2 unstartup systemd
   # - setup domain .
