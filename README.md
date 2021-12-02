@@ -10,3 +10,11 @@
 
 > some helper file.
   1. for nginx server setup [nginx-server-block.txt]
+
+---
+> note: if you are using oracle [enable port 80]
+
+```
+sudo iptables -I INPUT 6 -m state --state NEW -p tcp --dport 80 -j ACCEPT
+sudo netfilter-persistent save
+```
