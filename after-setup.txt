@@ -2,6 +2,10 @@
 
 ## CICD
    0. create a file called mmenv.txt (with all env variable for production)
+        - run: cp ~/application/env.txt .env
+	- run: pm2 del --silent app || ':'
+	- run: pm2 start index.js -i 0 --name app
+   
    1. create a action runner in our server.	
 	*go to settings then create a runner->
 	*instal runner in the server->
@@ -32,6 +36,22 @@
 @weekly certbot renew > /home/milon27/backup/ssl_log.txt
 @daily mysqldump -u root messmanager | gzip > /home/milon27/backup/`date +\%F-\%X`-mm.sql.gz
 @monthly find /home/milon27/backup/ -name "*.sql.gz" -type f -mtime +32 -delete
+
+
+
+
+## extra things,
+1. upload react build using scp.
+# clean
+rm -rf *
+# uplaod react build
+scp -r -i m27lab-yt /d/Milon_Project/JS_PROJECTS/for_upwork_student/react-js/myapp/build/* milon27@157.245.0.24:/var/www/html
+
+
+
+
+
+
 
 
 
