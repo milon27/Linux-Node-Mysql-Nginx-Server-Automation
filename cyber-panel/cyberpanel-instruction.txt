@@ -1,0 +1,42 @@
+official blog: https://docs.litespeedtech.com/cloud/images/cyberpanel/
+https://community.cyberpanel.net/t/how-can-i-change-default-port-cp/14279/8
+
+
+ssh: ssh -i key root@ip
+panel: ip:8090 [default port of cyber panel: /usr/local/lscp/conf/bind.conf]
+systemctl restart lscp
+
+change domain for cyberpanel: 
+
+----------------------------------
+
+panel username: admin
+panel password: sudo cat .litespeed_password [you will get you panel password]
+change panel pass: adminPass new-password
+--------------------------------------------------------------------------------
+mysql db password:  sudo cat .db_password
+e.g. 
+
+root_mysql_pass="9bac486658267991d666e6a93018b63ec6a18a84015a02d3e"
+cyberpanel_mysql_pass="9bac486658267991d666e6a93018b63ec6a18a84015a02d3w"
+
+
+----------------------before install wp-------------
+sudo apt-get install php-mysql
+
+
+
+============================extra=======================
+------------------------------------
+reverse dns: dig -t prt ml.m27lab.ns1.in-addr.arpa.
+ dig -x ns1.m27lab.ml
+
+----
+open lite speed web
+setup username pass
+sudo /usr/local/lsws/admin/misc/admpass.sh
+
+https://m27lab.ml:7080/login.php
+
+
+
