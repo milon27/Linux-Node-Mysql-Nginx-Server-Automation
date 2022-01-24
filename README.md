@@ -18,3 +18,10 @@
 sudo iptables -I INPUT 6 -m state --state NEW -p tcp --dport 80 -j ACCEPT
 sudo netfilter-persistent save
 ```
+
+> note 2 : certbot
+```
+show all cert: sudo certbot certificates
+delete a cert: sudo certbot delete --cert-name about.app.com
+now remove all code from nginx server block 
+```
