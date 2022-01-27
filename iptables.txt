@@ -1,0 +1,20 @@
+1. view all rule
+iptables -L --line-numbers
+
+2. flush all rule
+iptalbes -F
+
+2. change default policy to DROP from ACCEPT
+iptables -P FORWARD DROP
+
+4. add a rule
+iptables -I(top)/-A(bottom) INPUT(chain name) -s(source) 10.0.0.1 -j(target) ACCEPT/DROP/REJECT 
+
+5. delete a rule
+iptables -D INPUT 2(number of the rule)
+
+6. work with port:
+-> iptables -I INPUT -p(protocol) tcp --dport(destination port) 22 -j ACCEPT
+
+7. save rule
+sudo /sbin/iptables-save
