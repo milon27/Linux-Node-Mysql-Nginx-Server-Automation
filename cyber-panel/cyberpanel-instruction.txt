@@ -38,5 +38,11 @@ sudo /usr/local/lsws/admin/misc/admpass.sh
 
 https://m27lab.ml:7080/login.php
 
+============================increase upload max size:=======================
+
+Go to PHP → Edit PHP Configs → Advanced , and select php version
+upload_max_filesize = 512M
+post_max_size = 512M
+
 
 
