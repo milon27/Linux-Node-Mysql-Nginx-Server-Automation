@@ -1,0 +1,19 @@
+#backup mysql db[run on origin]
+
+sudo mysqldump -u root db_name | gzip > /home/milon27/backup/final_backup.sql.gz
+
+# download db from origin to local computer[download db][run on local machine(windows)]
+
+scp -i sshkey milon27@10.10.10.10:/home/milon27/backup/final_backup.sql.gz ~/Desktop/dbs 
+
+#upload to new server[run on local machine]
+//make sure you own the folder where you upload it
+//sudo chown milon27 ./backup
+
+scp -i sshkey ~/Desktop/dbs/final_backup.sql.gz milon27@12.12.12.12:/home/milon27/backup
+
+#restore mysql db[run on destination /home/milon27/backup]
+
+gunzip -k final_backup.sql.gz
+
+sudo mysql -u root db_name < final_backup.sql
