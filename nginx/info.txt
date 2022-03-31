@@ -1,0 +1,51 @@
+https://wiki.debian.org/Nginx/DirectoryStructure
+===============================1===================== 
+
+cd /etc/nginx
+> ls
+conf.d          koi-win            nginx.conf       sites-enabled
+fastcgi.conf    mime.types         proxy_params     snippets
+fastcgi_params  modules-available  scgi_params      uwsgi_params
+koi-utf         modules-enabled    sites-available  win-utf
+
+>  cd sites-available/
+default
+
+cat default
+
+```
+server {
+	# root /var/www/blog.example.com;
+	# index index.html;
+	server_name about.messmanager.app;
+	location / {
+		# proxy_pass http://localhost:2727/;
+		listen 80;
+		# listen [::]:80;
+
+		# server_name example.com;
+
+		# root /var/www/example.com;
+		# index index.html;
+
+		# location / {
+		#    try_files $uri $uri/ =404;
+		# }
+	}
+}
+
+```
+
+
+======================2. static files==============================
+/var/www/ == /usr/share/nginx/ (in docker)
+1. html
+2. other static site folders...
+
+* gzip enable 
+/etc/nginx/nginx.conf
+
+=========================  this much we know already ========================
+
+1. docker pull nginx:stable-alpine
+1. 
