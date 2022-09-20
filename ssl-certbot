@@ -1,0 +1,11 @@
+## expand ssl
+```bash
+sudo certbot 
+# keep blank and enter to select all domain (available in /etc/nginx/sites-eneabled/*)
+# select 2 to do https redirect
+```
+
+# install ssl after setup /etc/nginx/sites-eneabled/*
+ ```bash
+ sudo certbot --nginx
+ ```
