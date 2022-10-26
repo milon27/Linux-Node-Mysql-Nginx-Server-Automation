@@ -41,7 +41,7 @@ server {
 
 # for staic site
 server {
-        root /var/www/html;
+        root /var/www/html; # /var/www/ == /usr/share/nginx/ [both could work based on linux distro]
         index index.html index.htm index.nginx-debian.html;
         server_name example.com;
 
