@@ -23,7 +23,7 @@ touch myserver.conf
 
 - content of myserver or myserver.conf
 ```
-
+# for server reverse proxy
 server {
     # root /var/www/blog.example.com;
     # index index.html;
@@ -39,5 +39,27 @@ server {
     listen 80;
 }
 
+# for staic site
+server {
+        root /var/www/html;
+        index index.html index.htm index.nginx-debian.html;
+        server_name example.com;
+
+        location / {
+             try_files $uri $uri/ =404; # simple html app
+             #try_files $uri /index.html; # react js app/single page app
+        }
+}
+
+```
+
+- test nginx config
+```
+sudo nginx -t
+```
+
+- restart nginx
+```
+sudo systemctl restart nginx
 ```
 
