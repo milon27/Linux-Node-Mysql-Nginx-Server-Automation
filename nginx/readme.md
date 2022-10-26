@@ -53,7 +53,7 @@ server {
 
 ```
 
-- gzip enable on file /etc/nginx/nginx.conf
+- gzip enable on file /etc/nginx/nginx.conf [reference](https://www.digitalocean.com/community/tutorials/how-to-improve-website-performance-using-gzip-and-nginx-on-ubuntu-20-04)
 ```
 sudo nano /etc/nginx/nginx.conf
 
