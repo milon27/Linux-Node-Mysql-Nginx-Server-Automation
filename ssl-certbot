@@ -1,5 +1,11 @@
 ## install ssl certbot & python3
 sudo apt install certbot python3-certbot-nginx
+## install for centOs
+https://www.digitalocean.com/community/tutorials/how-to-secure-nginx-with-let-s-encrypt-on-centos-7
+
+sudo yum install epel-release
+sudo yum install certbot-nginx
+
 
 ## expand ssl
 ```bash
