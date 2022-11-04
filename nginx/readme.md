@@ -1,6 +1,6 @@
 - first install nginx
 ```
-sudo apt installl nginx
+sudo apt install nginx
 # or
 sudo yum install nginx
 ``` 
