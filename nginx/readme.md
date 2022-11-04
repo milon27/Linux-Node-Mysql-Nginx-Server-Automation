@@ -23,12 +23,14 @@ touch myserver.conf
 
 - content of myserver or myserver.conf
 ```
+
 # for server reverse proxy
 server {
     # root /var/www/blog.example.com;
     # index index.html;
     server_name _;
     location / {
+       client_max_body_size 250M;
        proxy_pass http://localhost:2727/;
        proxy_set_header X-Forwarded-Proto $scheme;
        proxy_set_header X-Real-IP $remote_addr;
