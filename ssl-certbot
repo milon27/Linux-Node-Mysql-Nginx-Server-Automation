@@ -18,3 +18,12 @@ sudo certbot
  ```bash
  sudo certbot --nginx
  ```
+
+# enable auto update
+```bash 
+
+sudo crontab -e
+# keep log in ssllog.txt
+@weekly certbot renew > /home/milon27/ssllog.txt
+
+```
