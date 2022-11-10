@@ -1,8 +1,8 @@
 - first install nginx
 ```
 sudo apt install nginx
-# or
-sudo yum install nginx
+# or (centOS)
+sudo yum install nginx 
 ``` 
 
 - check the status 
@@ -28,7 +28,7 @@ touch myserver.conf
 server {
     # root /var/www/blog.example.com;
     # index index.html;
-    server_name _;
+    server_name api.example.com;
     location / {
        client_max_body_size 250M;
        proxy_pass http://localhost:2727/;
@@ -45,12 +45,25 @@ server {
 server {
         root /var/www/html; # /var/www/ == /usr/share/nginx/ [both could work based on linux distro]
         index index.html index.htm index.nginx-debian.html;
-        server_name example.com;
+        server_name admin.example.com;
 
         location / {
-             try_files $uri $uri/ =404; # simple html app
-             #try_files $uri /index.html; # react js app/single page app
+             # try_files $uri $uri/ =404; # simple html app
+             try_files $uri /index.html; # react js app/single page app
         }
+}
+
+#for next js
+server {
+    # root /var/www/blog.example.com;
+    # index index.html;
+    server_name web.example.com;
+    location / {
+       proxy_pass http://localhost:3000/;
+    }
+
+    listen [::]:80;
+    listen 80;
 }
 
 ```
