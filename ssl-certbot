@@ -26,4 +26,6 @@ sudo crontab -e
 # keep log in ssllog.txt
 @weekly certbot renew > /home/milon27/ssllog.txt
 
+# or view all log here: sudo cat /var/log/letsencrypt/letsencrypt.log
+
 ```
